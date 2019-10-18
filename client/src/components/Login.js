@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from "react";
 import axiosWithAuth from './utils/axiosWithAuth'
 
-const Login = () => {
+const Login = props => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
@@ -27,10 +27,10 @@ const Login = () => {
     // add the token to localstorage
     // route to /protected (whatever landing page)
     axiosWithAuth()
-      .post('/api/login', this.state.credentials)
+      .post('/api/login', state.credentials)
       .then(res => {
         localStorage.setItem('token', res.data.payload);
-        props.history.push('/protected');
+        props.history.push('/api/colors');
       })
       .catch(err => console.log(err.response));
   };
